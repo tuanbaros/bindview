@@ -1,0 +1,1 @@
+include ':app', ':annotation-processing-tool', ':reflection', ':annotation'
