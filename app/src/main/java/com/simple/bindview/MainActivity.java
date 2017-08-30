@@ -5,7 +5,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.simple.BindView;
+import com.simple.OnClick;
 import com.simple.lib.BindViewLib;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.button)
     Button mButton;
+
+    @OnClick(R.id.button)
+    void submit() {
+        Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
