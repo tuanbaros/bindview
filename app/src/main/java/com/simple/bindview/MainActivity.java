@@ -1,11 +1,10 @@
 package com.simple.bindview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.simple.BindView;
 import com.simple.lib.BindViewLib;
 
@@ -22,13 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BindViewLib.bind(this);
-        mTextView.setText("Nguyen Thanh Tuan");
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Simple", Toast.LENGTH_SHORT).show();
-            }
-        });
+        mTextView.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
     }
 }

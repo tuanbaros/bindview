@@ -26,7 +26,7 @@ dependencies {
   })
   compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
   testCompile 'junit:junit:4.12'
-  compile project(':reflection')
+  compile project(':java-reflection')
   compile project(':annotation')
   annotationProcessor project(':annotation-processing-tool')
 }

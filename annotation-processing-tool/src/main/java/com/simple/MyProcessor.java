@@ -6,8 +6,10 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +18,6 @@ import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
@@ -26,7 +27,6 @@ import javax.lang.model.util.Types;
 /**
  * Created by FRAMGIA\nguyen.thanh.tuan on 8/29/17.
  */
-@SupportedAnnotationTypes("com.simple.BindView")
 @AutoService(Processor.class)
 public class MyProcessor extends AbstractProcessor {
     private static final String SUFFIX = "_Simple";
@@ -44,6 +44,21 @@ public class MyProcessor extends AbstractProcessor {
         mFiler = processingEnvironment.getFiler();
         mTypes = processingEnvironment.getTypeUtils();
         mElements = processingEnvironment.getElementUtils();
+    }
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        Set<String> types = new LinkedHashSet<>();
+        for (Class<? extends Annotation> annotation : getSupportedAnnotations()) {
+            types.add(annotation.getCanonicalName());
+        }
+        return types;
+    }
+
+    private Set<Class<? extends Annotation>> getSupportedAnnotations() {
+        Set<Class<? extends Annotation>> annotations = new LinkedHashSet<>();
+        annotations.add(BindView.class);
+        return annotations;
     }
 
     @Override
